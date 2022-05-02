@@ -5,7 +5,7 @@ import lombok.Getter;
 
 @Getter
 @AllArgsConstructor
-public enum AccountTypeLoT {
+public enum AccountTypeLoT implements IListOfTypes {
 
     CHECKING("CH"),
     SAVINGS("SV")
@@ -13,4 +13,10 @@ public enum AccountTypeLoT {
     ;
 
     private final String code;
+
+
+    @Override
+    public <T extends IListOfTypes> T[] getValues() {
+        return (T[]) AccountTypeLoT.values();
+    }
 }

@@ -12,11 +12,10 @@ import java.util.Optional;
 
 public interface IAccountRepository extends JpaRepository<Account, Long> {
 
-    List<Account> findByOwnerAndAndBalanceIsNotNull(Customer customer);
+    List<Account> findByOwner(Customer customer);
     List<Account> findByOwnerIdCustomer(Long idCustomer);
 
     List<Account> findAccountByBalanceBetween(BigDecimal lower, BigDecimal upper);
-
 
     @Query(
             """
@@ -26,10 +25,6 @@ public interface IAccountRepository extends JpaRepository<Account, Long> {
             """
     )
     Optional<Account> findByFirstNameAndId(String firstName, long idAccount);
-
-
-
-
 
     @Query(
             nativeQuery = true,
